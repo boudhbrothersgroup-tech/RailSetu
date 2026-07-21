@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'home_tab.dart';
-import 'search_tab.dart';
-import 'history_tab.dart';
-import 'settings_tab.dart';
 
 class MainNavigationContainer extends StatefulWidget {
   const MainNavigationContainer({super.key});
@@ -15,13 +12,9 @@ class MainNavigationContainer extends StatefulWidget {
 class _MainNavigationContainerState extends State<MainNavigationContainer> {
   int _selectedIndex = 0;
 
-  final List<Widget> _tabs = [
-    const HomeTab(),
-    const SearchTab(),
-    const HistoryTab(),
-    const SettingsTab(),
-  ];
-
+final List<Widget> _tabs = [
+  const HomeTab(),
+];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
