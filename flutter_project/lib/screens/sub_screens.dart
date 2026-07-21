@@ -84,7 +84,7 @@ class _PnrStatusScreenState extends State<PnrStatusScreen> {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.between,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Train: 22436 / VANDE BHARAT EXP', style: TextStyle(fontWeight: FontWeight.bold)),
                       Chip(label: Text('CC'), backgroundColor: Colors.orangeAccent),
@@ -92,7 +92,7 @@ class _PnrStatusScreenState extends State<PnrStatusScreen> {
                   ),
                   Divider(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.between,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Date of Journey: 25th July 2026'),
                       Text('Chart: Prepared', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
