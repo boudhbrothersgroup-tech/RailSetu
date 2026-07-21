@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PnrScreen extends StatefulWidget {
+class PnrScreen extends StatelessWidget {
   const PnrScreen({super.key});
-
-  @override
-  State<PnrScreen> createState() => _PnrScreenState();
-}
-
-class _PnrScreenState extends State<PnrScreen> {
-  final TextEditingController pnrController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,37 +9,28 @@ class _PnrScreenState extends State<PnrScreen> {
       appBar: AppBar(
         title: const Text("PNR Status"),
         backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(
-              controller: pnrController,
+            const TextField(
               keyboardType: TextInputType.number,
               maxLength: 10,
-              decoration: const InputDecoration(
-                labelText: "Enter 10 Digit PNR",
+              decoration: InputDecoration(
+                labelText: "Enter 10 Digit PNR Number",
                 border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.confirmation_number),
               ),
             ),
-
             const SizedBox(height: 20),
-
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "Searching PNR: ${pnrController.text}",
-                      ),
-                    ),
-                  );
-                },
-                child: const Text("Check PNR"),
+                onPressed: () {},
+                child: const Text("Check PNR Status"),
               ),
             ),
           ],
