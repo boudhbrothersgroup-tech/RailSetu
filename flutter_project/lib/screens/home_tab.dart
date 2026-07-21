@@ -96,22 +96,20 @@ class HomeTab extends StatelessWidget {
                       icon: features[index]["icon"],
                       title: features[index]["title"],
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "${features[index]["title"]} coming soon",
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+  if (features[index]["title"] == "PNR Status") {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PnrScreen(),
+      ),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          "${features[index]["title"]} coming soon",
         ),
       ),
     );
   }
-}
+},
