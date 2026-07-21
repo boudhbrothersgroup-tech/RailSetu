@@ -108,7 +108,12 @@ class HomeTab extends StatelessWidget {
       SnackBar(
         content: Text(
           "${features[index]["title"]} coming soon",
-                            );
+          ),
+      ),
+    );
+  }
+},
+                    );
                   },
                 );
               },
