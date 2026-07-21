@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/dashboard_card.dart';
-
+import 'pnr_screen.dart';
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
