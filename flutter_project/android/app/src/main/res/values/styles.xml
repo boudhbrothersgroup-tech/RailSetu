@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme applied to the Android Window as soon as the process has started.
+         This theme determines the color of the Android Window while your
+         Flutter app initializes itself. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <!-- Show a splash image of the app if desired -->
+        <item android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <!-- Theme to apply after the launch screen is finished and the Flutter app
+         is running. -->
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item android:windowBackground">?android:colorBackground</item>
+    </style>
+</resources>

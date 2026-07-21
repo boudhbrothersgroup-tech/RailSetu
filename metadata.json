@@ -1,0 +1,6 @@
+{
+  "name": "RailSetu",
+  "description": "An information-only Indian Railways utility app featuring Splash, PNR Status, Live Tracking, Seat Availability, Platform Locator, and complete Flutter Dart project export, designed in Material 3 colors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
