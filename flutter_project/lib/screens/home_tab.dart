@@ -212,7 +212,7 @@ class HomeTab extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 11, 
                   fontWeight: FontWeight.w600,
-                  color: Colors.black80
+                  color: Colors.black.withOpacity(0.8)
                 ),
               )
             ],
