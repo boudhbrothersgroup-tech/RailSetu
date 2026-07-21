@@ -49,42 +49,37 @@ class RailApiService {
     ];
   }
 
-  static Future<PNRStatus?> getPNRStatus(String pnr) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
-    
-    if (pnr.length != 10) {
-      throw Exception('Invalid PNR. PNR must be 10 digits long.');
-    }
-
-    return PNRStatus(
-      pnr: pnr,
-      trainNumber: '22436',
-      trainName: 'NDLS BSB VANDE BHARAT EXP',
-      dateOfJourney: '2026-07-25',
-      from: 'NDLS (New Delhi)',
-      to: 'BSB (Varanasi Jn)',
-      boarding: 'New Delhi',
-      travelClass: 'CC',
-      chartStatus: 'CHART NOT PREPARED',
-      passengers: [
-        PNRPassenger(
-          number: 1,
-          bookingStatus: 'CNF',
-          currentStatus: 'CNF',
-          coach: 'C4',
-          berth: 42,
-        ),
-        PNRPassenger(
-          number: 2,
-          bookingStatus: 'WL 12',
-          currentStatus: 'CNF',
-          coach: 'C4',
-          berth: 43,
-        ),
-      ],
-    );
+static Future<PNRStatus?> getPNRStatus(String pnr) async {
+  if (pnr.length != 10) {
+    throw Exception("PNR must be 10 digits");
   }
 
+  const apiKey = "702bf938e7msh69245a642d7ca30p14a203jsn09d4662b3651";;
+  const apiHost = "irctc-indian-railway-pnr-status.p.rapidapi.com";
+
+  final url = Uri.parse(
+      "https://$apiHost/getPNRStatus/$pnr");
+
+  final response = await http.get(
+    url,
+    headers: {
+      "x-rapidapi-key": apiKey,
+      "x-rapidapi-host": apiHost,
+    },
+  );
+
+  if (response.statusCode != 200) {
+    throw Exception("Failed to fetch PNR");
+  }
+
+  final data = jsonDecode(response.body);
+
+  // Abhi API mapping baad mein karenge.
+  // Filhaal response print hoga.
+  print(data);
+
+  return null;
+}
   static Future<LiveTrainStatus?> getLiveTrainStatus(String trainNumber) async {
     await Future.delayed(const Duration(milliseconds: 700));
 
