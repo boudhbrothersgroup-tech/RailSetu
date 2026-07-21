@@ -5,11 +5,11 @@
          Flutter app initializes itself. -->
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <!-- Show a splash image of the app if desired -->
-        <item android:windowBackground">@drawable/launch_background</item>
+        <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
     <!-- Theme to apply after the launch screen is finished and the Flutter app
          is running. -->
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <item android:windowBackground">?android:colorBackground</item>
-    </style>
+      <item name="android:windowBackground">?android:colorBackground</item>
+  </style>
 </resources>
