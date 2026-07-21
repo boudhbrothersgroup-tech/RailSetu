@@ -1,220 +1,113 @@
 import 'package:flutter/material.dart';
-import 'sub_screens.dart';
+import '../widgets/dashboard_card.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Icon(Icons.train, color: Colors.white),
-            SizedBox(width: 8),
-            Text('RailSetu', style: TextStyle(fontWeight: FontWeight.bold)),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AboutScreen()),
-            ),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Indian Railways Color Band banner
-            Container(
-              height: 6,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0x0D47A1), // Blue
-                    Colors.white,
-                    Color(0xFFFF9800), // Orange
-                  ],
-                  stops: [0.45, 0.5, 0.55],
-                ),
-              ),
-            ),
-            
-            // Hero section with dynamic greeting card
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                color: const Color(0x0D47A1).withOpacity(0.05),
-                elevation: 0,
-                child: const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Color(0x0D47A1),
-                        radius: 24,
-                        child: Icon(Icons.support_agent, color: Colors.white),
-                      ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Welcome to RailSetu',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0x0D47A1),
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              'Information-only official companion for Indian Railways commuters. Ads free, login free.',
-                              style: TextStyle(fontSize: 12, color: Colors.black54),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
+  String _greeting() {
+    final hour = DateTime.now().hour;
 
-            // Feature Grid Header
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-              child: Text(
-                'Railway Utilities',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ),
-
-            // Responsive Bento-style utilities grid
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: GridView.count(
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childAspectRatio: 0.95,
-                children: [
-                  _buildMenuCard(
-                    context, 
-                    'PNR Status', 
-                    Icons.contact_mail_rounded, 
-                    const Color(0x0D47A1),
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PnrStatusScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Live Train', 
-                    Icons.location_on_rounded, 
-                    const Color(0xFFFF9800),
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const LiveTrainScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Train Schedule', 
-                    Icons.calendar_month_rounded, 
-                    Colors.teal,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TrainScheduleScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Seats', 
-                    Icons.event_seat_rounded, 
-                    Colors.indigo,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SeatAvailabilityScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Fare Enquiry', 
-                    Icons.currency_rupee_rounded, 
-                    Colors.green,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const FareEnquiryScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Coach Position', 
-                    Icons.view_carousel_rounded, 
-                    Colors.purple,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CoachPositionScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Platform Find', 
-                    Icons.pin_drop_rounded, 
-                    Colors.brown,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PlatformLocatorScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Cancelled', 
-                    Icons.cancel_rounded, 
-                    Colors.red,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CancelledTrainsScreen())),
-                  ),
-                  _buildMenuCard(
-                    context, 
-                    'Diverted', 
-                    Icons.alt_route_rounded, 
-                    Colors.orange,
-                    () => Navigator.push(context, MaterialPageRoute(builder: (_) => const DivertedTrainsScreen())),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 24),
-          ],
-        ),
-      ),
-    );
+    if (hour < 12) {
+      return "Good Morning";
+    } else if (hour < 17) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
+    }
   }
 
-  Widget _buildMenuCard(
-    BuildContext context, 
-    String title, 
-    IconData icon, 
-    Color color,
-    VoidCallback onTap,
-  ) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Card(
-        elevation: 1,
-        shadowColor: Colors.black12,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        color: Colors.white,
+  @override
+  Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> features = [
+      {"title": "PNR Status", "icon": Icons.confirmation_number},
+      {"title": "Train Search", "icon": Icons.search},
+      {"title": "Live Status", "icon": Icons.train},
+      {"title": "Seat Availability", "icon": Icons.event_seat},
+      {"title": "Platform", "icon": Icons.location_on},
+      {"title": "Coach Position", "icon": Icons.view_stream},
+      {"title": "Favourites", "icon": Icons.favorite},
+      {"title": "Railway News", "icon": Icons.newspaper},
+    ];
+
+    return Scaffold(
+      backgroundColor: const Color(0xffF5F7FA),
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                backgroundColor: color.withOpacity(0.12),
-                radius: 20,
-                child: Icon(icon, color: color, size: 22),
-              ),
-              const SizedBox(height: 8),
+
               Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 11, 
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black.withOpacity(0.8)
+                _greeting(),
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
                 ),
-              )
+              ),
+
+              const SizedBox(height: 5),
+
+              const Text(
+                "RailSetu",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff0D47A1),
+                ),
+              ),
+
+              const Text(
+                "Your Indian Railway Companion",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              TextField(
+                decoration: InputDecoration(
+                  hintText: "Search trains...",
+                  prefixIcon: const Icon(Icons.search),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              Expanded(
+                child: GridView.builder(
+                  itemCount: features.length,
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                    childAspectRatio: 1.1,
+                  ),
+                  itemBuilder: (context, index) {
+                    return DashboardCard(
+                      icon: features[index]["icon"],
+                      title: features[index]["title"],
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "${features[index]["title"]} coming soon",
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
