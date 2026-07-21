@@ -91,34 +91,34 @@ class HomeTab extends StatelessWidget {
                     mainAxisSpacing: 15,
                     childAspectRatio: 1.1,
                   ),
-                  itemBuilder: (context, index) {
+                                    itemBuilder: (context, index) {
                     return DashboardCard(
                       icon: features[index]["icon"],
                       title: features[index]["title"],
                       onTap: () {
-  if (features[index]["title"] == "PNR Status") {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const PnrScreen(),
-      ),
-    );
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          "${features[index]["title"]} coming soon",
-          ),
-      ),
-    );
-  }
-},
+                        if (features[index]["title"] == "PNR Status") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PnrScreen(),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "${features[index]["title"]} coming soon",
+                              ),
+                            ),
+                          );
+                        }
+                      },
                     );
                   },
-                );
-              },
-            );
-          },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
